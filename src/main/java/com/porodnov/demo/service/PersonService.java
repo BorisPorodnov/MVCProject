@@ -1,6 +1,6 @@
 package com.porodnov.demo.service;
 
-import com.porodnov.demo.dao.TestDao;
+import com.porodnov.demo.dao.PersonDao;
 import com.porodnov.demo.model.Person;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TestService {
+public class PersonService {
 
-    private final TestDao testDao;
+    private final PersonDao testDao;
 
     public List<Person> getTest() {
         return testDao.getDaoTest();

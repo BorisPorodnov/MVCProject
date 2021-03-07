@@ -1,7 +1,7 @@
 package com.porodnov.demo.controller;
 
 import com.porodnov.demo.model.Person;
-import com.porodnov.demo.service.TestService;
+import com.porodnov.demo.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonController {
 
-    private final TestService testService;
+    private final PersonService testService;
 
     @GetMapping("/hoho")
     public List<Person> creatPerson(){

@@ -10,19 +10,18 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class TestDao {
+public class PersonDao {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Person> getDaoTest() {
 
-      String  sql = " SELECT * FROM users ";
+      String  sql = " SELECT * FROM person ";
 
         RowMapper<Person> responseMapper = (rs, rowNum) -> new Person()
             .setId(rs.getInt("id"))
             .setName(rs.getString("name"))
             .setLastName(rs.getString("last_name"));
-
         return jdbcTemplate.query(sql, responseMapper);
     }
 
