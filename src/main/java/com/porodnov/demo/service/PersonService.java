@@ -11,9 +11,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonService {
 
-    private final PersonDao testDao;
+    private final PersonDao personDao;
 
-    public List<Person> getTest() {
-        return testDao.getDaoTest();
+    public void creatingNewPerson(List <Person> person) {
+        personDao.getNewPerson(person);
     }
 }

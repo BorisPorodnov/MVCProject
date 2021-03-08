@@ -3,21 +3,19 @@ package com.porodnov.demo.controller;
 import com.porodnov.demo.model.Person;
 import com.porodnov.demo.service.PersonService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class PersonController {
 
-    private final PersonService testService;
+    private final PersonService personService;
 
-    @GetMapping("/hoho")
-    public List<Person> creatPerson(){
-        return testService.getTest();
+    @PostMapping("/person")
+    public void creatPerson(@RequestBody List<Person> person) {
+        personService.creatingNewPerson(person);
     }
 }
