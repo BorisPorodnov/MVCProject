@@ -33,9 +33,23 @@ GET api/v1/person/[id]
 Возвращает объект типа Person.
 
 POST api/v1/person
+[
+{
+    "person_name": "Jerry",
+    "person_last_name": "Otto"
+},
+{
+    "person_name": "Floyd",
+    "person_last_name": "Mayweather"
+}
+]
 Где id – уникальный идентификатор сотрудника.
 В теле запроса передавать объект Person. Id должен быть null или undefined.
 Создаёт нового сотрудника в системе с указанными навыками.
+
+
+
+
 
 
 PUT api/v1/person/[id]

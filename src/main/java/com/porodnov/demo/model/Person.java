@@ -9,9 +9,11 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public class Person {
+    @JsonProperty("person_id")
+    private  int id;
     @JsonProperty("person_name")
     private String name;
     @JsonProperty("person_last_name")
     private String lastName;
-   // private List<Skill> skills;
+    // private List<Skill> skills;
 }
