@@ -5,15 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 @Accessors(chain = true)
 public class Person {
     @JsonProperty("person_id")
-    private  int id;
+    private  long  id;
     @JsonProperty("person_name")
     private String name;
     @JsonProperty("person_last_name")
     private String lastName;
-    // private List<Skill> skills;
+
+    private ArrayList<Long> skills;
 }
