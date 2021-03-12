@@ -22,4 +22,4 @@
 
 #Click Save button
 
-#Open Student database and do requests
+#Open university database and do requests
