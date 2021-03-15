@@ -25,7 +25,7 @@ API взаимодействия
 
 GET api/v1/persons
 Возвращает массив объектов типа Person:
-[Person, Person, …]                                                          V
+[Person, Person, …]                                                        V
 
  
 GET api/v1/person/[id]

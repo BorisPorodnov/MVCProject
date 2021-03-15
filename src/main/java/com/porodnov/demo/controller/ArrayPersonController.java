@@ -17,8 +17,7 @@ public class ArrayPersonController {
     private final ArrayPersonService arrayPersonService;
 
     @GetMapping("/persons")
-    public List<Person> getArrayPerson()
-    {
+    public List<Person> getArrayPerson() {
         return arrayPersonService.getArrayPersonService();
     }
 }
