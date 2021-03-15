@@ -26,7 +26,7 @@ public class ArrayPersonDao {
             .setIds(rs.getInt("person_id"))
             .setName(rs.getString("person_name"))
             .setLastName(rs.getString("person_last_name"))
-            .setSkills(findSkillPerson(findAlls(), findAllSkill()));
+            .setSkills(findSkillPersons(findAlls(), findAllSkill()));
         return namedJdbcTemplate.query(sql, rowMapper);
     }
 
@@ -54,7 +54,7 @@ public class ArrayPersonDao {
         return namedJdbcTemplate.query(sql, rowMapper);
     }
 
-    private ArrayList<Long> findSkillPerson(List<Person> personList, List<Skill> skillList) {
+    private ArrayList<Long> findSkillPersons(List<Person> personList, List<Skill> skillList) {
         ArrayList<Long> listPerson = new ArrayList<>();
         ArrayList<Long> listSkill = new ArrayList<>();
         ArrayList<Long> result = new ArrayList<>();
