@@ -1,6 +1,7 @@
 package com.porodnov.demo.dao;
 
 import com.porodnov.demo.model.Person;
+import com.porodnov.demo.model.PersonResponse;
 import com.porodnov.demo.model.Skill;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,61 +17,44 @@ public class ArrayPersonDao {
 
     private final NamedParameterJdbcTemplate namedJdbcTemplate;
 
-    public List<Person> findAll() {
-        String sql =
-            " SELECT *" +
-                " FROM person per " +
-                " INNER JOIN person_skill ps " +
-                " ON per.person_id = ps.person_skill_person_id ";
-        RowMapper<Person> rowMapper = (rs, rowNum) -> new Person()
-            .setIds(rs.getInt("person_id"))
-            .setName(rs.getString("person_name"))
-            .setLastName(rs.getString("person_last_name"))
-            .setSkills(findSkillPersons(findAlls(), findAllSkill()));
-        return namedJdbcTemplate.query(sql, rowMapper);
-    }
-
-    public List<Person> findAlls() {
+    public List<Person> findById() {
         String sql =
             " SELECT * " +
-                " FROM person per " +
-                " INNER JOIN person_skill ps " +
-                " ON per.person_id = ps.person_skill_person_id" +
-                " INNER JOIN  skill sk" +
-                " ON ps.person_skill_skill_id = sk.skill_id";
+                " FROM person " +
+                " WHERE person_id = 68 ";
         RowMapper<Person> rowMapper = (rs, rowNum) -> new Person()
-            .setIds(rs.getInt("person_id"))
+            .setIds(rs.getLong("person_id"))
             .setName(rs.getString("person_name"))
             .setLastName(rs.getString("person_last_name"));
-        return namedJdbcTemplate.query(sql, rowMapper);
+        List<Person> listPerson = namedJdbcTemplate.query(sql, rowMapper);
+        List<PersonResponse> listById = findPersonById();
+        List<Skill> skillList = findSkillById();
+        listPerson.get(0).setSkills((ArrayList<Skill>) skillList);
+
+        return listPerson;
     }
 
-    public List<Skill> findAllSkill() {
-        String sql = "Select * FROM skill";
-        RowMapper<Skill> rowMapper = (rs, rowNum) -> new Skill()
+    private List<PersonResponse> findPersonById() {
+        String sql =
+            " SELECT * FROM person_skill " +
+                " WHERE person_skill_person_id = 68 ";
+        RowMapper<PersonResponse> Mapper = (rs, rowNum) -> new PersonResponse()
+            .setPersonId(rs.getInt("person_skill_person_id"))
+            .setSkillId(rs.getInt("person_skill_person_id"));
+        return namedJdbcTemplate.query(sql, Mapper);
+    }
+
+    private List<Skill> findSkillById() {
+        String sql;
+        sql =
+            " SELECT * FROM skill" +
+                " WHERE skill_id = 12 " +
+                " OR skill_id = 13 ";
+        RowMapper<Skill> rowMap = (rs, rowNum) -> new Skill()
             .setId(rs.getInt("skill_id"))
             .setName(rs.getString("skill_name"))
-            .setLevel(rs.getByte("skill_level"));
-        return namedJdbcTemplate.query(sql, rowMapper);
+            .setLevel(rs.getInt("skill_level"));
+        return namedJdbcTemplate.query(sql, rowMap);
     }
 
-    private ArrayList<Long> findSkillPersons(List<Person> personList, List<Skill> skillList) {
-        ArrayList<Long> listPerson = new ArrayList<>();
-        ArrayList<Long> listSkill = new ArrayList<>();
-        ArrayList<Long> result = new ArrayList<>();
-        for (Person person : personList) {
-            listPerson.add(Long.valueOf(person.getIds()));
-            for (Skill skill : skillList) {
-                listSkill.add(Long.valueOf(skill.getId()));
-            }
-            for (Long idsPerson : listPerson) {
-                for (Long idsSkill : listSkill) {
-                    if (!idsPerson.equals(idsSkill)) {
-                        result.add(idsSkill);
-                    }
-                }
-            }
-        }
-        return result;
-    }
 }

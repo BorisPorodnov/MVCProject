@@ -12,11 +12,12 @@ import java.util.ArrayList;
 @Accessors(chain = true)
 public class Person {
     @JsonProperty("person_id")
-    private Integer ids;
+    private Long ids;
     @JsonProperty("person_name")
     private String name;
     @JsonProperty("person_last_name")
     private String lastName;
 
-    private ArrayList<Long> skills;
+    private ArrayList<Skill> skills;
+
 }

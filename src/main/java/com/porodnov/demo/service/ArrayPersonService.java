@@ -14,6 +14,6 @@ public class ArrayPersonService {
     private final ArrayPersonDao arrayPersonDao;
 
     public List<Person> getArrayPersonService() {
-        return arrayPersonDao.findAll();
+        return arrayPersonDao.findById();
     }
 }

@@ -7,9 +7,8 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class PersonResponse {
-    @JsonProperty("person_name")
-    private String name;
-    @JsonProperty("person_id")
-    private long id;
-
+    @JsonProperty("person_skill_skill_id")
+    private int skillId;
+    @JsonProperty("person_skill_person_id")
+    private int personId;
 }

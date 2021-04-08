@@ -1,6 +1,7 @@
 package com.porodnov.demo.dao;
 
 import com.porodnov.demo.model.Person;
+import com.porodnov.demo.model.Skill;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -27,7 +28,7 @@ public class PersonDao {
 
         long update = keyHolder.getKey().longValue();
 
-        for (Long skill : person.getSkills()) {
+        for (Skill skill : person.getSkills()) {
             String sql1 =
                     " INSERT INTO person_skill(person_skill_person_id, person_skill_skill_id)" +
                     " VALUES (:personId, :skillId)";
